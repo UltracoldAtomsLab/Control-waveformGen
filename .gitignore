@@ -45,3 +45,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# custom settings
+db
+incremental_db
+*.done
+*.rpt
+*.summary

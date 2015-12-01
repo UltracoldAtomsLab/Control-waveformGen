@@ -1,0 +1,180 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2010 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II
+# Version 10.0 Build 218 06/27/2010 SJ Full Version
+# Date created = 23:54:30  September 19, 2012
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		waveformGen_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE EP2C5T144C6
+set_global_assignment -name TOP_LEVEL_ENTITY waveformGen
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 10.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:54:30  SEPTEMBER 19, 2012"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name MISC_FILE "D:/Dropbox/CourseGrad1/IAMS/MonroeFPGA_DigitalSequencer/waveformGen.dpf"
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_global_assignment -name VERILOG_FILE v/onchips/onchip_256_pulse.v
+set_global_assignment -name VERILOG_FILE v/onchips/onchip_128_pulse.v
+set_global_assignment -name VERILOG_FILE v/onchips/onchip_64_pulse.v
+set_global_assignment -name VERILOG_FILE v/onchips/onchip_32_pulse.v
+set_global_assignment -name VERILOG_FILE v/onchips/onchip_16_pulse.v
+set_global_assignment -name VERILOG_FILE v/streamers/streamer256p.v
+set_global_assignment -name VERILOG_FILE v/streamers/streamer128p.v
+set_global_assignment -name VERILOG_FILE v/streamers/streamer64p.v
+set_global_assignment -name VERILOG_FILE v/streamers/streamer32p.v
+set_global_assignment -name VERILOG_FILE v/streamers/streamer16p.v
+set_global_assignment -name SOURCE_FILE v/streamers/streamer_body.h
+set_global_assignment -name VERILOG_FILE v/SEQ_WAVE_GEN.v
+set_global_assignment -name VERILOG_FILE v/RS232_CONTROL.v
+set_global_assignment -name SOURCE_FILE v/para.h
+set_global_assignment -name SOURCE_FILE v/ext1.h
+set_global_assignment -name VERILOG_FILE v/async_transmitter.v
+set_global_assignment -name VERILOG_FILE v/async_receiver.v
+set_global_assignment -name VERILOG_FILE waveformGen.v
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity FPGAv5_top -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -entity FPGAv5_top -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -entity FPGAv5_top -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -entity FPGAv5_top -section_id "Root Region"
+set_location_assignment PIN_17 -to CLK_50
+set_location_assignment PIN_42 -to EXT[10]
+set_location_assignment PIN_41 -to EXT[9]
+set_location_assignment PIN_40 -to EXT[8]
+set_location_assignment PIN_24 -to EXT[7]
+set_location_assignment PIN_25 -to EXT[6]
+set_location_assignment PIN_26 -to EXT[5]
+set_location_assignment PIN_27 -to EXT[4]
+set_location_assignment PIN_28 -to EXT[3]
+set_location_assignment PIN_30 -to EXT[2]
+set_location_assignment PIN_31 -to EXT[1]
+set_location_assignment PIN_32 -to EXT[0]
+set_location_assignment PIN_18 -to EXT_CLK
+set_location_assignment PIN_43 -to IN1[12]
+set_location_assignment PIN_44 -to IN1[11]
+set_location_assignment PIN_45 -to IN1[10]
+set_location_assignment PIN_47 -to IN1[9]
+set_location_assignment PIN_48 -to IN1[8]
+set_location_assignment PIN_51 -to IN1[7]
+set_location_assignment PIN_52 -to IN1[6]
+set_location_assignment PIN_53 -to IN1[5]
+set_location_assignment PIN_55 -to IN1[4]
+set_location_assignment PIN_57 -to IN1[3]
+set_location_assignment PIN_58 -to IN1[2]
+set_location_assignment PIN_59 -to IN1[1]
+set_location_assignment PIN_60 -to IN1[0]
+set_location_assignment PIN_88 -to IN2[12]
+set_location_assignment PIN_89 -to IN2[11]
+set_location_assignment PIN_90 -to IN2[10]
+set_location_assignment PIN_91 -to IN2[9]
+set_location_assignment PIN_92 -to IN2[8]
+set_location_assignment PIN_93 -to IN2[7]
+set_location_assignment PIN_94 -to IN2[6]
+set_location_assignment PIN_96 -to IN2[5]
+set_location_assignment PIN_97 -to IN2[4]
+set_location_assignment PIN_99 -to IN2[3]
+set_location_assignment PIN_100 -to IN2[2]
+set_location_assignment PIN_101 -to IN2[1]
+set_location_assignment PIN_103 -to IN2[0]
+set_location_assignment PIN_121 -to IN3[7]
+set_location_assignment PIN_122 -to IN3[6]
+set_location_assignment PIN_125 -to IN3[5]
+set_location_assignment PIN_126 -to IN3[4]
+set_location_assignment PIN_129 -to IN3[3]
+set_location_assignment PIN_132 -to IN3[2]
+set_location_assignment PIN_133 -to IN3[1]
+set_location_assignment PIN_134 -to IN3[0]
+set_location_assignment PIN_9 -to LED3
+set_location_assignment PIN_144 -to LED4
+set_location_assignment PIN_63 -to OUT1[7]
+set_location_assignment PIN_64 -to OUT1[6]
+set_location_assignment PIN_65 -to OUT1[5]
+set_location_assignment PIN_67 -to OUT1[4]
+set_location_assignment PIN_69 -to OUT1[3]
+set_location_assignment PIN_70 -to OUT1[2]
+set_location_assignment PIN_71 -to OUT1[1]
+set_location_assignment PIN_72 -to OUT1[0]
+set_location_assignment PIN_73 -to OUT2[7]
+set_location_assignment PIN_74 -to OUT2[6]
+set_location_assignment PIN_75 -to OUT2[5]
+set_location_assignment PIN_79 -to OUT2[4]
+set_location_assignment PIN_80 -to OUT2[3]
+set_location_assignment PIN_81 -to OUT2[2]
+set_location_assignment PIN_86 -to OUT2[1]
+set_location_assignment PIN_87 -to OUT2[0]
+set_location_assignment PIN_104 -to OUT3[7]
+set_location_assignment PIN_112 -to OUT3[6]
+set_location_assignment PIN_113 -to OUT3[5]
+set_location_assignment PIN_114 -to OUT3[4]
+set_location_assignment PIN_115 -to OUT3[3]
+set_location_assignment PIN_118 -to OUT3[2]
+set_location_assignment PIN_119 -to OUT3[1]
+set_location_assignment PIN_120 -to OUT3[0]
+set_location_assignment PIN_139 -to SW[3]
+set_location_assignment PIN_137 -to SW[2]
+set_location_assignment PIN_136 -to SW[1]
+set_location_assignment PIN_135 -to SW[0]
+set_location_assignment PIN_142 -to ADCLK
+set_location_assignment PIN_141 -to ADCS
+set_location_assignment PIN_143 -to ADDIN
+set_location_assignment PIN_4 -to USB_RXD
+set_location_assignment PIN_21 -to USB_TXD
+set_location_assignment PIN_22 -to ADDOUT
+set_location_assignment PIN_7 -to DACLK
+set_location_assignment PIN_3 -to DACS
+set_location_assignment PIN_8 -to DADATA
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity FPGAv5_top -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity FPGAv5_top -section_id Top
+set_global_assignment -name SDC_FILE SDC1.sdc
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_global_assignment -name STRATIX_CONFIGURATION_DEVICE EPCS4
+set_global_assignment -name GENERATE_TTF_FILE OFF
+set_global_assignment -name GENERATE_RBF_FILE ON
+set_global_assignment -name RESERVE_ASDO_AFTER_CONFIGURATION "AS INPUT TRI-STATED"
+set_global_assignment -name USER_START_UP_CLOCK OFF
+set_global_assignment -name CYCLONEII_CONFIGURATION_SCHEME "ACTIVE SERIAL"
+set_global_assignment -name DISABLE_NCS_AND_OE_PULLUPS_ON_CONFIG_DEVICE OFF
+set_global_assignment -name ON_CHIP_BITSTREAM_DECOMPRESSION ON
+set_global_assignment -name CONFIGURATION_CLOCK_DIVISOR 2.5
+set_global_assignment -name CLOCK_SOURCE INTERNAL
+set_global_assignment -name CONFIGURATION_CLOCK_FREQUENCY "10 MHZ"
+set_global_assignment -name ENABLE_DEVICE_WIDE_RESET OFF
+set_global_assignment -name MISC_FILE "C:/Users/Herbert/Dropbox/IAMS/projects/AnalogTiming_DigitalTimingAndControl/MonroeFPGA_DigitalWaveform_Outputing_clock/waveformGen.dpf"
+set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
