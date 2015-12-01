@@ -64,10 +64,11 @@ assign OUT2 = Waveform[15:8];
 assign OUT3[6:0] = Waveform[22:16];
 assign OUT3[7] = CLK_20K;
 // IN[0] and IN1[1] are used as outputs
-assign IN1[1]  = CLK_20K;
+//assign IN1[1]  = CLK_20K;
 assign IN1[0]  = TriggerOut;
 
-assign TriggerLinein = IN3[0];
+//assign TriggerLinein = IN3[0];
+assign TriggerLinein = IN1[1];
 assign IN3[1] = TriggerLinein;
 assign nRst = (reset_count==0);
 
