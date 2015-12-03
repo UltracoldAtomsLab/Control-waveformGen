@@ -52,3 +52,13 @@ incremental_db
 *.done
 *.rpt
 *.summary
+*.jic
+*.sof
+*.jdi
+*.bak
+*.pof
+*.rbf
+*.map
+*.smsg
+*.cdf
+*.pin
