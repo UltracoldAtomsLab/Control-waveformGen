@@ -2,7 +2,7 @@ module RS232_CONTROL(
 	iNRST,             // the reset signal
 	iCLK,              // the clock, 50M Hz
 	iRXD,              // recieving channel from computer
-	
+
 	oMode,
 	oMODE_SET_CH_WAVEFORM,
 	oMODE_SET_CH_INIT_VAL,
@@ -12,13 +12,15 @@ module RS232_CONTROL(
 	oMODE_CMD_TO_INIT,
 	oMODE_CMD_RESET_TIME,
 	oMODE_CMD_RESET_DEV,
-	
+
 	oFLAG_TIME_READY,
 	oFLAG_CH_VAL_READY,
+	oFLAG_SPL_RATE_READY,
 	oDATA_CHANNEL,
 	oDATA_TIME,
-	oDATA_CH_VAL
-	
+	oDATA_CH_VAL,
+	oSPL_RATE
+
 );
 /// The behavior of this module is to decode the data received from PC
 /// Mode M_IDLE is waiting for a command byte to tell which Mode to proceed
@@ -46,7 +48,8 @@ parameter SUB_GetPeriod0    = SUB_Initial;
 parameter SUB_GetPeriod1    = `s'd1;
 parameter SUB_GetPeriod2    = `s'd2;
 parameter SUB_GetPeriod3    = `s'd3;
-
+// M_SET_SPL_RATE
+parameter SUB_GetSplRate		= `s'd1;
 
 // ==== I/O, Reg, Wire Declaration ======================================
 input                     iNRST;
@@ -64,9 +67,11 @@ output                    oMODE_CMD_RESET_TIME    = (Mode==M_CMD_RESET_TIME);
 output                    oMODE_CMD_RESET_DEV     = (Mode==M_CMD_RESET_DEV);
 output                    oFLAG_TIME_READY        = FlagTime_delay[15];
 output                    oFLAG_CH_VAL_READY      = FlagVal_delay[15];
+output										oFLAG_SPL_RATE_READY		= FlagSplRate;
 output [7:0]              oDATA_CHANNEL           = Channel;
 output [`bitNum-1:0]      oDATA_TIME              = (Mode==M_SET_PERIOD)? Period : Time;
 output                    oDATA_CH_VAL            = Value;
+output [7:0]							oSPL_RATE								= SplRate;
 wire                      mDataReady;
 wire [7:0]                mData;
 reg                       CLOCK_25;
@@ -80,9 +85,11 @@ reg                       Value,       Value_next;
 reg                       FlagTime,    FlagTime_next;
 reg                       FlagVal,     FlagVal_next;
 reg [15:0]                FlagTime_delay, FlagVal_delay;
+reg												FlagSplRate, FlagSplRate_next;
+reg [7:0]									SplRate,     SplRate_next;
 
 // ==== Structural Design ==============================
-always @ (posedge iCLK) 
+always @ (posedge iCLK)
 	CLOCK_25 <= !CLOCK_25;
 
 async_receiver AR(
@@ -102,6 +109,7 @@ always @ (*) begin
 			M_SET_PERIOD:     Mode_next = mData;
 			M_SET_CH_INIT:    Mode_next = mData;
 			M_SET_CH_VAL:     Mode_next = mData;
+			M_SET_SPL_RATE:		Mode_next = mData;
 			M_CMD_ARM:        Mode_next = mData;
 			M_CMD_TO_INIT:    Mode_next = mData;
 			M_CMD_RESET_TIME: Mode_next = mData;
@@ -114,7 +122,7 @@ always @ (*) begin
 		else
 			Mode_next = Mode;
 	end
-	
+
 	// sub_state_next
 	case(Mode)
 		M_IDLE:
@@ -143,6 +151,8 @@ always @ (*) begin
 				SUB_GetValue  : sub_state_next = SUB_GetChannel;
 				default       : sub_state_next = SUB_SubEnd; // not allowed
 			endcase
+		M_SET_SPL_RATE:
+			sub_state_next = SUB_SubEnd;
 		M_CMD_ARM:
 			sub_state_next = SUB_SubEnd;
 		M_CMD_TO_INIT:
@@ -200,6 +210,11 @@ always @ (*) begin
 				default:            begin Channel_next = Channel;   Value_next = Value;    end
 			endcase
 		end
+
+		M_SET_SPL_RATE: begin
+			SplRate_next = mData;
+		end
+
 		default: begin
 			NumOfTime_next = 0;
 			Time_next = 0;
@@ -233,7 +248,10 @@ always @ (*) begin
 		M_SET_CH_VAL:  FlagVal_next = (sub_state==SUB_GetValue);
 		default:       FlagVal_next = 1'b0;
 	endcase
-	
+	case(Mode)
+		M_SET_SPL_RATE:FlagSplRate_next = (sub_state == SUB_Initial);
+		default:       FlagSplRate_next = 1'b0;
+	endcase
 end
 
 
@@ -269,6 +287,8 @@ always @ (negedge iNRST or posedge mDataReady) begin
 		Value     <= 1'b0;
 		FlagTime  <= 1'b0;
 		FlagVal   <= 1'b0;
+		FlagSplRate <= 1'b0;
+		SplRate   <= 0;
 	end
 	else begin
 		Channel   <= Channel_next;
@@ -278,6 +298,8 @@ always @ (negedge iNRST or posedge mDataReady) begin
 		Value     <= Value_next;
 		FlagTime  <= FlagTime_next;
 		FlagVal   <= FlagVal_next;
+		FlagSplRate <= FlagSplRate_next;
+		SplRate 	<= SplRate_next;
 	end
 end
 
